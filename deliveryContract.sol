@@ -113,7 +113,7 @@ contract deliveryContract {
     //가게------------------------------------------------------------------------------------------------
 
     //가게 가입 기능
-    function storeRegist(string memory _storeName,string memory _storeAddress) public accessOnlyStore {
+    function storeRegist(string memory _storeName,string memory _storeAddress) public {
         //stores_customer 배열에 가게 추가하기
         Store_cus storage newStore_cus = stores_customer.push();
         newStore_cus.storeWallet=msg.sender;
@@ -219,7 +219,7 @@ contract deliveryContract {
     //고객--------------------------------------------------------------------------------------------
 
     //고객 회원가입 기능
-    function customerRegist(string memory _customerNick,string memory _customerAddress) public accessOnlyCustomer{
+    function customerRegist(string memory _customerNick,string memory _customerAddress) public {
         Customer storage newCustomer=customers[msg.sender];
         newCustomer.customerWallet=msg.sender;
         newCustomer.customerNick=_customerNick;
@@ -228,48 +228,6 @@ contract deliveryContract {
 
     //장바구니에 메뉴 담기
     function addMenuToBusket(string memory _storeName,string memory _foodName,uint _count)public accessOnlyCustomer{
-        
-        
-        /*
-        if(customers[msg.sender].basket.menuNames.length==0){
-            customers[msg.sender].basket.customerAddr=msg.sender;       
-            customers[msg.sender].basket.customerAddress=customers[msg.sender].customerAddress;
-            for(uint i=0;i<stores_customer.length;i++){
-                if(keccak256(abi.encodePacked(stores_customer[i].storeName)) == keccak256(abi.encodePacked(_storeName))){
-                    customers[msg.sender].basket.storeAddr=stores_customer[i].storeWallet;
-                    customers[msg.sender].basket.storeAddress = stores_customer[i].storeAddress;
-                    for(uint j=0;j<stores_customer[i].menuList.length;j++){
-                        if(keccak256(abi.encodePacked(stores_customer[i].menuList[j].name))==keccak256(abi.encodePacked(_foodName))){
-                            customers[msg.sender].basket.menuNames.push(Menu(stores_customer[i].menuList[j].name,stores_customer[i].menuList[j].price,_count));
-                        }                    
-                    }
-                }
-            }       
-            customers[msg.sender].basket.foodPrice=menuTotalPriceForBasket();
-            customers[msg.sender].basket.deliveryFee=0;  
-        }else{
-            for(uint i=0;i<stores_customer.length;i++){
-                if(customers[msg.sender].basket.storeAddr==stores_customer[i].storeWallet){
-                    if(keccak256(abi.encodePacked(stores_customer[i].storeName))==keccak256(abi.encodePacked(_storeName))){
-                        customers[msg.sender].basket.customerAddr=msg.sender;       
-                        customers[msg.sender].basket.customerAddress=customers[msg.sender].customerAddress;
-                        for(uint k=0;k<stores_customer.length;k++){
-                            if(keccak256(abi.encodePacked(stores_customer[k].storeName)) == keccak256(abi.encodePacked(_storeName))){
-                                customers[msg.sender].basket.storeAddr=stores_customer[k].storeWallet;
-                                customers[msg.sender].basket.storeAddress = stores_customer[k].storeAddress;
-                                for(uint l=0;l<stores_customer[k].menuList.length;l++){
-                                    if(keccak256(abi.encodePacked(stores_customer[k].menuList[l].name))==keccak256(abi.encodePacked(_foodName))){
-                                        customers[msg.sender].basket.menuNames.push(Menu(stores_customer[k].menuList[l].name,stores_customer[k].menuList[l].price,_count));
-                                    }                    
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        */
-
         
         customers[msg.sender].basket.customerAddr=msg.sender;       
         customers[msg.sender].basket.customerAddress=customers[msg.sender].customerAddress;
@@ -407,7 +365,7 @@ contract deliveryContract {
     //라이더---------------------------------------------------------------------------------------------
 
     //라이더 회원가입 기능
-    function riderRegist(string memory _deliveryType,string memory _deliveryZone) public accessOnlyRider{
+    function riderRegist(string memory _deliveryType,string memory _deliveryZone) public {
         Rider storage newRider = riders[msg.sender];
         newRider.riderWallet = msg.sender;
         newRider.deliveryType = _deliveryType;
