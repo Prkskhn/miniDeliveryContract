@@ -1,9 +1,8 @@
 # miniDeliveryContract
 
-
 가게ID
-1.가게 등록(storeRegist)
-2.가게 음식 등록(storeMenuRegist)
+1. 가게 등록(storeRegist)
+2. 가게 음식 등록(storeMenuRegist)
 
 고객ID
 1. 고객 등록(customerRegist)
