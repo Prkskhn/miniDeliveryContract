@@ -75,6 +75,7 @@ contract deliveryContract {
         storeState storeStatus;
         riderState riderStatus;
     }
+     
     //주문에 대한 가게 반응 상태
     enum storeState {decline, accept,cookFinish, isPicked,notyetChoice,checkMoney}
     //주문에 대한 배달원 반응 상태
@@ -336,7 +337,8 @@ contract deliveryContract {
         }
      
         //고객의 order상태 변경
-        customers[msg.sender].goingOrder.storeStatus==storeState.checkMoney;
+        customers[msg.sender].goingOrder.storeStatus=storeState.checkMoney;
+        customers[msg.sender].goingOrder.riderStatus=riderState.checkMoney;
         //배달원 주문건의 상태 변경
         for(uint i=0;i<riders[customers[msg.sender].goingOrder.riderAddr].orders.length;i++){
             if(riders[customers[msg.sender].goingOrder.riderAddr].orders[i].orderID==customers[msg.sender].goingOrder.orderID){
